@@ -15,13 +15,11 @@ class TodoList extends React.Component {
 
   loadItems(event) {
     event.target.innerHTML = "Loading";
-
     const xhrTodos = new XMLHttpRequest();
     const xhrUsers = new XMLHttpRequest();
     xhrTodos.open('GET', 'https://jsonplaceholder.typicode.com/todos');
     xhrTodos.addEventListener('load', () => {
       let todoList = JSON.parse(xhrTodos.response);
-
       xhrUsers.open('GET', 'https://jsonplaceholder.typicode.com/users');
       xhrUsers.addEventListener('load', () => {
         let usersList = JSON.parse(xhrUsers.response);
@@ -30,12 +28,9 @@ class TodoList extends React.Component {
           todoList: todoList
         });
       });
-
       xhrUsers.send();
     });
-
     xhrTodos.send();
-
     event.target.setAttribute('disabled', 'disabled');
   }
 
